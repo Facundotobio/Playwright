@@ -7,13 +7,16 @@ let paginaLogin: PaginaLogin;
 let paginaDashboard: PaginaDashboard;
 let modalCrearCuenta: ModalCrearCuenta;
 
+test.beforeEach(async ({ page }) => {
+  paginaLogin = new PaginaLogin(page);
+  paginaDashboard = new PaginaDashboard(page);
+  modalCrearCuenta = new ModalCrearCuenta(page);
+  await paginaLogin.visitarPaginaLogin();
+  
+});
+
 test('TC5 - verificar que el cliente pueda crear una cuenta exitosamente', async ({ page }) => {
   
-    paginaLogin = new PaginaLogin(page);
-    paginaDashboard = new PaginaDashboard(page);
-    modalCrearCuenta = new ModalCrearCuenta(page);
-
-    await paginaLogin.visitarPaginaLogin();
     await paginaLogin.logueoExitoso('facundohectortobio@gmail.com', 'olakomotyamas');
     await page.waitForURL('http://localhost:3000/dashboard');
     await paginaDashboard.botonCrearCuenta.click();

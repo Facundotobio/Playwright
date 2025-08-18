@@ -1,0 +1,14 @@
+{
+    "usuarioValido": {
+        "nombre": "Facundo",
+        "apellido": "Tobio",
+        "email": "facundohectortobio@gmail.com",
+        "contrasena": "123456"
+    },
+    "usuarioInvalido": {
+        "nombre": "Facundo",
+        "apellido": "Tobio",
+        "email": "emailinvalido@gmail.com",
+        "contrasena": "123456"
+    }
+}

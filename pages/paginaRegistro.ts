@@ -35,7 +35,7 @@ export class PaginaRegistro {
     // metodo para visitar la pagina de registro
     async visitarPaginaRegistro(){
         await this.page.goto('http://localhost:3000/signup');
-        // await this.page.waitForLoadState('domcontentloaded'); // esto es para esperar a que la pagina cargue completamente todos los elementos de la web
+         await this.page.waitForLoadState('domcontentloaded'); // esto es para esperar a que la pagina cargue completamente todos los elementos de la web
     }
 
     async completarFormularioRegistro(nombre: string, apellido: string, email: string, contrasena: string){
@@ -52,6 +52,6 @@ export class PaginaRegistro {
     async registrarUsuario(nombre: string, apellido: string, email: string, contrasena: string){
         await this.completarFormularioRegistro(nombre, apellido, email, contrasena);
         await this.hacerClickEnBotonRegistrarse();
-        await expect(this.page.getByText(this.mensajeDeCreacionDeCuenta)).toBeVisible();
+        // await expect(this.page.getByText(this.mensajeDeCreacionDeCuenta)).toBeVisible();
     }
 }

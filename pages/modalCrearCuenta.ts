@@ -26,4 +26,28 @@ export class ModalCrearCuenta {
         await this.page.goto('http://localhost:3000/dashboard');
         await this.page.waitForLoadState('domcontentloaded');
     }
+
+    async seleccionaTipoDeCuenta(tipoDeCuenta: string){
+        await this.tipoDeCuentaCombobox.click();
+        try{
+            await this.page.getByRole('option', { name: tipoDeCuenta }).click();
+        } catch (error){
+            console.log(`la opcion ${tipoDeCuenta} no existe en el combobox`);    
+        }
+    }
+
+    async ingresaMontoInicial(montoInicial: number){
+        await this.montoInicialInput.fill(montoInicial.toString());
+    }
+
+    async completarMontoInicial(monto: string){
+        await this.montoInicialInput.fill(monto);
+    }
+
+    async crearCuenta(tipoDeCuenta: string, monto: string){
+        await this.seleccionaTipoDeCuenta(tipoDeCuenta);
+        await this.completarMontoInicial(monto);
+        await this.botonCrearCuenta.click();
+        await expect(this.page.getByText(this.cuentaCreadaExitosamente)).toBeVisible();
+    }
 }
